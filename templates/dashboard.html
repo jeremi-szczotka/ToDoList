@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Your To-Do List</h2>
+
+<form method="post" class="mb-3">
+  <input type="text" name="content" placeholder="New task" class="form-control mb-2">
+  <button type="submit" class="btn btn-primary">Add</button>
+  <a href="{{ url_for('logout') }}" class="btn btn-outline-danger ms-2">Logout</a>
+</form>
+
+<ul class="list-group">
+    {% for task in tasks %}
+      <li class="list-group-item d-flex justify-content-between align-items-center {% if task.is_done %}text-muted bg-light{% endif %}">
+        <form action="{{ url_for('toggle_task', task_id=task.id) }}" method="post" class="me-2">
+          <button class="btn btn-sm {% if task.is_done %}btn-warning{% else %}btn-outline-success{% endif %}">
+            {% if task.is_done %}✓ Undo{% else %}✔ Done{% endif %}
+          </button>
+        </form>
+  
+        <form action="{{ url_for('edit_task', task_id=task.id) }}" method="post" class="d-flex flex-grow-1 me-2">
+          <input name="content" class="form-control me-2" value="{{ task.content }}">
+          <button class="btn btn-outline-primary btn-sm">Zapisz</button>
+        </form>
+  
+        <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post" onsubmit="return confirm('Na pewno usunąć?')">
+          <button class="btn btn-outline-danger btn-sm">🗑</button>
+        </form>
+      </li>
+    {% else %}
+      <li class="list-group-item text-muted">Brak zadań.</li>
+    {% endfor %}
+  </ul>
+  
+  
+{% endblock %}
