@@ -1,13 +1,13 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-from dbScript import db, app  # jeśli chcesz od razu utworzyć tabele
+from app import db, app 
 
 DB_NAME = "todo_db"
 DB_USER = "postgres"
-DB_PASSWORD = "jerry"     # <-- Zmień na swoje hasło!
+DB_PASSWORD = "jerry"     
 DB_HOST = "localhost"
 
-# Połączenie z bazą główną, np. "postgres"
+# Connect with postgres
 connection = psycopg2.connect(
     dbname="postgres",
     user=DB_USER,
@@ -17,18 +17,18 @@ connection = psycopg2.connect(
 connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 cursor = connection.cursor()
 
-# Usuń starą bazę
+# Delete the database if it exists
 cursor.execute(f"DROP DATABASE IF EXISTS {DB_NAME};")
 
-# Utwórz nową bazę
+#make a new database
 cursor.execute(f"CREATE DATABASE {DB_NAME};")
 
 cursor.close()
 connection.close()
 
-print("✅ Baza danych zresetowana.")
+print("Database running")
 
-# Teraz utwórz tabele w nowej bazie
+#old dbScript.py
 with app.app_context():
     db.create_all()
     print("✅ Tabele utworzone.")
