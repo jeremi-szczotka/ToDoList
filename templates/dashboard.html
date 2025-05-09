@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-<h2>Your To-Do List</h2>
+<h2>Twoja To-Do Lista</h2>
 
 <form method="post" class="mb-3">
-  <input type="text" name="content" placeholder="New task" class="form-control mb-2">
-  <button type="submit" class="btn btn-primary">Add</button>
-  <a href="{{ url_for('logout') }}" class="btn btn-outline-danger ms-2">Logout</a>
+  <input type="text" name="content" placeholder="Nowe zadanie" class="form-control mb-2">
+  <button type="submit" class="btn btn-primary">Dodaj</button>
+  <a href="{{ url_for('logout') }}" class="btn btn-outline-danger ms-2">Wyloguj</a>
 </form>
 
 <ul class="list-group">
@@ -14,7 +14,7 @@
       <li class="list-group-item d-flex justify-content-between align-items-center {% if task.is_done %}text-muted bg-light{% endif %}">
         <form action="{{ url_for('toggle_task', task_id=task.id) }}" method="post" class="me-2">
           <button class="btn btn-sm {% if task.is_done %}btn-warning{% else %}btn-outline-success{% endif %}">
-            {% if task.is_done %}✓ Undo{% else %}✔ Done{% endif %}
+            {% if task.is_done %}✓ Cofnij{% else %}✔ Gotowe{% endif %}
           </button>
         </form>
   

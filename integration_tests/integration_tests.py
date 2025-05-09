@@ -38,6 +38,7 @@ class ToDoAppIntegrationTest(unittest.TestCase):
         # Sprawdź, czy dashboard się wyświetla
         self.assertIn("dashboard", driver.current_url)
         self.assertTrue("Add" in driver.page_source or "Logout" in driver.page_source)
-
+    
+    
 if __name__ == "__main__":
     unittest.main()

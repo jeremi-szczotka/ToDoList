@@ -44,13 +44,13 @@ def register():
         hashed_pw = generate_password_hash(password)
 
         if User.query.filter_by(username=username).first():
-            flash('Username already exists.')
+            flash('Istnieje już taki użytkownik.')
             return redirect(url_for('register'))
 
         new_user = User(username=username, password=hashed_pw)
         db.session.add(new_user)
         db.session.commit()
-        flash('Account created. Please log in.')
+        flash('Konto założone pomyślnie. Możesz się zalogować.')
         return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -67,7 +67,7 @@ def login():
             login_user(user)
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid username or password.')
+            flash('Nie poprawna nazwa użytkownika lub hasło.')
             return redirect(url_for('login'))
 
     return render_template('login.html')
@@ -91,8 +91,7 @@ def delete_task(task_id):
     task = Task.query.get_or_404(task_id)
     if task.user_id != current_user.id:
         flash("Nie możesz usunąć cudzego zadania.")
-        return redirect(url_for('dashboard'))
-    
+        return redirect(url_for('dashboard'))    
     db.session.delete(task)
     db.session.commit()
     flash("Zadanie usunięte.")

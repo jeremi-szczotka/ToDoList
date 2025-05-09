@@ -32,6 +32,5 @@ class UserModelTestCase(unittest.TestCase):
             db.session.add(task)
             db.session.commit()
             self.assertEqual(Task.query.first().content, 'Zrób coś')
-
 if __name__ == '__main__':
     unittest.main()
