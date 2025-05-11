@@ -16,13 +16,13 @@ class TestInvalidLogin(unittest.TestCase):
     def test_login_with_wrong_credentials(self):
         driver = self.driver
 
-        # Próba logowania na nieistniejącego użytkownika
+      
         driver.find_element(By.NAME, "username").send_keys("nieistniejacy_uzytkownik")
         driver.find_element(By.NAME, "password").send_keys("zlehaslo123")
         driver.find_element(By.TAG_NAME, "form").submit()
         time.sleep(1)
 
-        # Sprawdzenie, czy użytkownik NIE został wpuszczony do dashboardu
+        
         self.assertIn("login", driver.current_url)
         self.assertIn("Nie poprawna nazwa użytkownika lub hasło", driver.page_source)
 

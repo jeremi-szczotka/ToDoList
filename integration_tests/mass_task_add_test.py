@@ -18,19 +18,19 @@ class TestMassTaskAdd(unittest.TestCase):
         username = f"user{int(time.time())}"
         password = "test123"
 
-        # Rejestracja
+ 
         driver.find_element(By.NAME, "username").send_keys(username)
         driver.find_element(By.NAME, "password").send_keys(password)
         driver.find_element(By.TAG_NAME, "form").submit()
         time.sleep(1)
 
-        # Logowanie
+        
         driver.find_element(By.NAME, "username").send_keys(username)
         driver.find_element(By.NAME, "password").send_keys(password)
         driver.find_element(By.TAG_NAME, "form").submit()
         time.sleep(1)
 
-        # Dodanie 50 zadań
+        # Adding 50 tasks
         for i in range(50):
             driver.find_element(By.NAME, "content").send_keys(f"Zadanie #{i+1}")
             driver.find_element(By.TAG_NAME, "form").submit()
@@ -38,7 +38,7 @@ class TestMassTaskAdd(unittest.TestCase):
 
         time.sleep(1)
 
-        # Sprawdzenie, czy wszystkie 50 zadań się pojawiło
+ 
         tasks = driver.find_elements(By.XPATH, "//ul/li[contains(@class, 'list-group-item')]")
         self.assertEqual(len(tasks), 50, f"Oczekiwano 50 zadań, ale znaleziono {len(tasks)}.")
 

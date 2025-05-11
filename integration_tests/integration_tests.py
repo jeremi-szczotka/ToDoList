@@ -29,13 +29,13 @@ class ToDoAppIntegrationTest(unittest.TestCase):
       
         assert "login" in driver.current_url
 
-        # Zaloguj się
+
         driver.find_element(By.NAME, "username").send_keys(username)
         driver.find_element(By.NAME, "password").send_keys(password)
         driver.find_element(By.TAG_NAME, "form").submit()
         time.sleep(10)
 
-        # Sprawdź, czy dashboard się wyświetla
+       
         self.assertIn("dashboard", driver.current_url)
         self.assertTrue("Add" in driver.page_source or "Logout" in driver.page_source)
     

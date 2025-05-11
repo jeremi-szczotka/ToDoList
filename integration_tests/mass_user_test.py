@@ -26,7 +26,7 @@ class TestRegisterMultipleUsers(unittest.TestCase):
             driver.find_element(By.TAG_NAME, "form").submit()
             time.sleep(0.5)
 
-            # Sprawdzenie przekierowania do loginu
+            
             self.assertIn("login", driver.current_url, f"Rejestracja nie powiodła się dla użytkownika {username}")
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ cursor = connection.cursor()
 # Delete the database if it exists
 cursor.execute(f"DROP DATABASE IF EXISTS {DB_NAME};")
 
-#make a new database
+
 cursor.execute(f"CREATE DATABASE {DB_NAME};")
 
 cursor.close()
@@ -31,4 +31,4 @@ print("Database running")
 #old dbScript.py
 with app.app_context():
     db.create_all()
-    print("✅ Tabele utworzone.")
+    print("Tables has been made.")
